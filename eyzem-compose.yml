@@ -1,0 +1,17 @@
+services:
+  eyzem:
+    image: eyz-eyzem-ykd110:latest  # Replace with your image name
+    networks:
+      - dokploy-network           # Must match your Dokploy Traefik network
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.eyzem.rule=Host(`eyzem.catchee.xyz`)"
+        - "traefik.http.routers.eyzem.entrypoints=websecure"
+        - "traefik.http.routers.eyzem.tls.certresolver=letsencrypt"
+        - "traefik.http.services.eyzem.loadbalancer.server.port=80"
+
+networks:
+  dokploy-network:
+    external: true
