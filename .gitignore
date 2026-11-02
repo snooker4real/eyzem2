@@ -1,0 +1,3 @@
+
+# Variables locales (secrets) : ne pas versionner
+/.env
